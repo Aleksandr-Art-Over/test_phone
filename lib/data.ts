@@ -34,17 +34,17 @@ export const contacts: Contact[] = [
 ]
 export const trunks = [
     {
-        id: 'ashkhabad',
+        id: 'trunk1',
         city: {
-            name: 'Ашхабад',
-            innerCity: { name: 'Центральный район' },
+            name: 'trunk 1',
+            // innerCity: { name: 'Центральный район' },
         },
     },
     {
-        id: 'mary',
+        id: 'trunk2',
         city: {
-            name: 'Мары',
-            innerCity: { name: 'Центральный район' },
+            name: 'trunk 2',
+            // innerCity: { name: 'Центральный район' },
         },
     },
 ]

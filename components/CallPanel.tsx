@@ -6,7 +6,8 @@ import { PhoneOff, MicIcon, Speaker, VolumeOff } from 'lucide-react'
 import type { Contact } from '@/types'
 import { motion } from 'framer-motion'
 import { useClickAway } from '@reactuses/core'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
+import { useFeatureStore } from '@/store/features.store'
 
 interface CallPanelProps {
     contact: Contact
@@ -16,6 +17,10 @@ interface CallPanelProps {
 export function CallPanel({ contact, onEndCall }: CallPanelProps) {
     const modalRef = useRef<HTMLDivElement>(null)
     useClickAway(modalRef, () => onEndCall())
+    const { offline } = useFeatureStore()
+    if (!offline) {
+        return null
+    }
     return (
         <>
             <motion.div
