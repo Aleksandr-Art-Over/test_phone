@@ -1,0 +1,115 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    /* Базовые цвета */
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
+    /* Основные компоненты */
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+
+    /* Системные */
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+
+    /* Сайдбар */
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+
+    /* Шрифты */
+    --font-sans: var(--font-pt-serif), ui-sans-serif, system-ui, sans-serif;
+    --font-serif: var(--font-pt-serif), ui-serif, Georgia, serif;
+
+    /* Радиусы */
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
+}
+
+:root {
+    --radius: 0.625rem;
+    /* Фон страницы — глубокий темный */
+    --background: oklch(0.28 0.07 145);
+
+    /* КАРТОЧКА — делаем её светлее фона, чтобы она "выпукло" смотрелась */
+    --card: oklch(0.35 0.08 145);
+    --card-foreground: oklch(0.98 0.01 145);
+
+    /* ГРАНИЦА — это критически важно! Делаем её полупрозрачной и светлой */
+    --border: oklch(0.45 0.1 145 / 40%);
+
+    --muted-foreground: oklch(0.85 0.03 145 / 70%);
+    --primary: oklch(0.85 0.12 85); /* Золото для имен */
+    /* --- СВЕТЛАЯ ТЕМА (Зеленая база) --- */
+    --foreground: oklch(0.98 0.01 145);
+
+    /* КАРТОЧКА: Делаем её заметно светлее фона */
+
+    --primary-foreground: oklch(0.25 0.05 85);
+
+    /* ГРАНИЦЫ: Вместо темных линий используем светлый "блик" с прозрачностью */
+    --border: oklch(0.45 0.08 145 / 40%);
+    --input: oklch(0.45 0.08 145 / 40%);
+    --ring: oklch(0.85 0.12 85);
+
+    /* САЙДБАР: Делаем самым темным элементом, чтобы карточки на его фоне "всплывали" */
+    --sidebar: oklch(0.25 0.05 145);
+    --sidebar-foreground: oklch(0.9 0.02 145);
+    --sidebar-border: oklch(0.35 0.06 145 / 50%);
+}
+
+.dark {
+    /* В темной графитовой теме карточка должна быть "приподнята" за счет яркости */
+    --background: oklch(0.12 0.02 145);
+    --card: oklch(0.18 0.03 145);
+    --card-foreground: oklch(0.95 0.02 145);
+    --border: oklch(0.25 0.04 145); /* Тонкая серо-зеленая линия */
+
+    /* КАРТОЧКА: Поднимаем яркость относительно фона */
+
+    --primary: oklch(0.75 0.14 150); /* Изумрудный неон */
+    --primary-foreground: oklch(0.1 0.05 150);
+
+    /* ГРАНИЦЫ: В темной теме они должны быть едва заметными, но контрастными */
+    --input: oklch(0.25 0.03 145);
+
+    --sidebar: oklch(0.09 0.01 145);
+    --sidebar-border: oklch(0.15 0.02 145);
+}
+
+@layer base {
+    * {
+        /* Принудительно делаем границы более заметными */
+        @apply border-border/80;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+    /* Добавляем мягкую тень для всех карточек, чтобы они отделялись от фона */
+    .card {
+        box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.3);
+    }
+}
